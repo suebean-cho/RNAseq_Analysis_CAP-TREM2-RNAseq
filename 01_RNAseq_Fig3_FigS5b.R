@@ -29,7 +29,7 @@ raw_data_coding <- raw_data %>%
 # 1. edgeR Setup & DGEList 
 # ==============================================================================
 count_mat <- raw_data_coding %>%
-  dplyr::select(gene_id, starts_with("Control"), starts_with("Infection")) %>%
+  dplyr::select(gene_id, starts_with("Control"), starts_with("Infected")) %>%
   column_to_rownames(var = "gene_id") %>%
   as.matrix()
 
@@ -41,7 +41,7 @@ gene_lengths <- raw_data_coding %>%
   dplyr::select(gene_id, gene_length) %>%
   deframe()
 
-group <- factor(c(rep("control", 3), rep("infection", 3)), levels = c("control", "infection"))
+group <- factor(c(rep("control", 3), rep("infected", 3)), levels = c("control", "infected"))
 
 dge <- DGEList(counts = count_mat, group = group)
 
@@ -62,12 +62,12 @@ dge <- estimateDisp(dge, design)
 plotMDS(dge)
 
 # ==============================================================================
-# 3. GLM & DEG Analysis (Infection vs Control)
+# 3. GLM & DEG Analysis (Infected vs Control)
 # ==============================================================================
 glm_fit <- glmFit(dge, design)
 
 cont_matrix <- makeContrasts(
-  Inf_vs_Ctrl = groupinfection - groupcontrol,
+  Inf_vs_Ctrl = groupinfected - groupcontrol,
   levels = design
 )
 
@@ -145,7 +145,7 @@ heatmap_obj <- heatmap.2(heatmap_mat,
                          col = heatmap_palette,
                          key = TRUE, keysize = 1.0, 
                          key.par = list(cex.lab = 2.0, cex.axis = 1.5),
-                         cexRow = 0.8,
+                         LabRow = FALSE,
                          cexCol = 2.5,      
                          cex.main = 2,    
                          margin = c(12, 15), 
@@ -156,7 +156,7 @@ heatmap_obj <- heatmap.2(heatmap_mat,
 
 par(xpd=TRUE)
 legend("topright", 
-       legend = c("Control", "Infection"), 
+       legend = c("Control", "Infected"), 
        fill = c("#95a5a6", "#d35400"),     
        bty = "n",                    
        cex = 2.0,                    
