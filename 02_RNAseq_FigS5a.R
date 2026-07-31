@@ -38,7 +38,7 @@ gene_lengths <- raw_data_coding %>%
   dplyr::select(gene_id, gene_length) %>%
   deframe()
 
-group <- factor(c("Control", rep("CA_G2", 3)), levels = c("Control", "CA_G2"))
+group <- factor(c("Control", rep("Infected", 3)), levels = c("Control", "Infected"))
 
 dge <- DGEList(counts = count_mat, group = group)
 
@@ -60,7 +60,7 @@ col_sub <- c("blue", rep("red",3))
 plotMDS(dge, col = col_sub)
 
 # ==============================================================================
-# 3. GLM & DEG Analysis (CA_G2 vs Control)
+# 3. GLM & DEG Analysis (Infected vs Control)
 # ==============================================================================
 glm_fit <- glmFit(dge, design)
 
@@ -150,7 +150,7 @@ heatmap_obj <- heatmap.2(heatmap_mat,
 
 par(xpd=TRUE)
 legend("topright", 
-       legend = c("Control", "CA_G2"), 
+       legend = c("Control", "Infected"), 
        fill = c("#95a5a6", "#d35400"),     
        bty = "n",                    
        cex = 2.0,                    
