@@ -15,7 +15,7 @@ library(here)
 dir.create(here("plot"), showWarnings = FALSE)
 dir.create(here("output"), showWarnings = FALSE)
 
-data_file <- here("input", "gene_count figS5a.xls")
+data_file <- here("input", "gene_count figS5a.tsv")
 raw_data <- read_tsv(data_file, col_types = cols())
 
 # Filter for protein-coding genes
