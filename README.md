@@ -52,6 +52,3 @@ For a complete and exact list of attached packages and versions, please refer to
 
 ## Data Availability
 The raw FASTQ files and processed count matrices for both the bulk and single-cell RNA-seq datasets have been deposited in the NCBI Gene Expression Omnibus (GEO) under accession number: GSE344428, GSE344429.
-
-## License
-This code is released under the MIT License.
