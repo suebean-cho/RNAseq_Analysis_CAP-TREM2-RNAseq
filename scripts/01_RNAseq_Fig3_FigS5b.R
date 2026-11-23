@@ -12,7 +12,7 @@ library(clusterProfiler)
 library(org.Hs.eg.db)   
 library(enrichplot)  
 library(here) 
-
+here::i_am("scripts/01_RNAseq_Fig3_FigS5b.R")
 
 # Initialize project directories
 dir.create(here("plot"), showWarnings = FALSE)
