@@ -29,7 +29,7 @@ raw_data_coding <- raw_data %>%
 # 1. edgeR Setup & DGEList 
 # ==============================================================================
 count_mat <- raw_data_coding %>%
-  dplyr::select(gene_id, starts_with("Control"), starts_with("Infected")) %>%
+  dplyr::select(gene_id, starts_with("Control"), starts_with("Infection")) %>%
   column_to_rownames(var = "gene_id") %>%
   as.matrix()
 
