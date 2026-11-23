@@ -10,6 +10,7 @@ library(ggrepel)
 library(openxlsx)
 library(pheatmap)  
 library(here) 
+here::i_am("scripts/02_RNAseq_FigS5a.R")
 
 # Initialize project directories
 dir.create(here("plot"), showWarnings = FALSE)
